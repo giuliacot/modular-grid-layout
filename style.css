@@ -1,0 +1,461 @@
+:root {
+  --gutter: 0.8rem;
+  --paper: #f9f8eb;
+  
+  /* Basic Spacing */
+  --spacing: 1rem;
+  --bigSpacing: 2rem;
+  
+  --colorLink: 5, 5, 5;
+  
+  --bigHead: 4rem;
+  --heading: 2.5rem;
+  --sectionTitle: 1.5rem;
+  --menuLink: 2.2rem;
+  
+  --modularGridUnit: 4.5rem;
+  
+  --min-height-row: calc(3 * var(--modularGridUnit));
+  --max-height-row: calc(4 * var(--modularGridUnit));
+}
+
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  font-family: 'Inconsolata', monospace;
+  margin: 2em;
+  background-color: var(--paper);
+  box-sizing: border-box;
+}
+
+h1 {
+  font-style: italic;
+  color: #373fff;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+span {
+  font-size: 0.88rem;
+  color: var(--colorLink);
+  margin-bottom: 0.25rem;
+}
+
+/* Vertical Spacing */
+p, section, div, .menu {
+  margin-top: 0;
+  margin-bottom: var(--spacing);
+}
+
+[class^='description'] {
+  margin-bottom: var(--spacing);
+  font-size: 1rem;
+  background-color: #FA77ED;
+  
+}
+
+.boitePageWrapper {
+  margin: 1.5rem;
+}
+
+.boitePage {
+  display: grid;
+  /* Final stage*/
+  grid-template-rows: 
+    [row-start] minmax(var(--modularGridUnit), max-content) repeat(17, minmax(var(--modularGridUnit), max-content));
+  grid-template-columns: [grid-column-start] 1fr repeat(34, 1fr) 1fr [grid-column-end];
+  /*grid-template-rows: 
+    [grid-row-start] fit-content(var(--modularGridUnit)) repeat(16, fit-content(var(--modularGridUnit))) fit-content(var(--modularGridUnit)) [grid-row-end];*/
+
+  /*grid-template-rows: repeat(18, [row-start] var(--modularGridUnit) [row-end]);*/
+  /*fit-content(var(--modularGridUnit))*/
+  grid-gap: var(--gutter);
+  border: 1px solid black;
+  box-shadow: -1rem 1rem 0 rgba(0, 0, 0);
+  padding: var(--bigSpacing);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/*.boitePage {
+  display: grid;
+
+  grid-template-rows: 
+    [row-start] fit-content(var(--modularGridUnit), auto) repeat(17, fit-content(var(--modularGridUnit), auto));
+  grid-template-columns: [grid-column-start] 1fr repeat(34, 1fr) 1fr [grid-column-end];
+  grid-gap: var(--gutter);
+
+}
+
+.boitePage {
+  display: grid;
+  
+  grid-template-rows: 
+    repeat(18, var(--modularGridUnit));
+  grid-template-columns: repeat(36, 1fr);
+  grid-gap: var(--gutter);
+}*/
+
+.heading {
+  /*grid-area: row-start / grid-column-start / span 7 / 8;*/
+  grid-area: 1 / 1 / span 7 / 8;
+  writing-mode: vertical-rl;
+  text-align: right;
+  border-top: calc(var(--spacing) / 2) solid black;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: #F0E71D;
+  
+}
+
+.title {
+  font-size: 4.5rem;
+  line-height: 1;
+  margin: 0;
+}
+
+.subtitle {
+  letter-spacing: var(--spacing);
+}
+
+.description-1 {
+  grid-area:  1 / 8 / span 2 / span 24;
+  text-align: right;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  grid-area: 6 / 32 / 10 / 37;
+  background-color: #71C70C;
+}
+
+.contacts h5 {
+  margin-bottom: 1rem;
+}
+
+.contacts p {
+  margin: 0.25rem 0;
+  line-height: 1.1;
+}
+
+.events {
+  grid-area: 3 / 14 / 15 / span 18;
+  
+}
+
+.sectionTitle {
+  font-size: var(--heading);
+  margin: 0;
+}
+
+.itemsTitle {
+  grid-area: tl;
+  text-transform: uppercase;
+  word-break: break-word;
+}
+
+.itemsWrap {
+
+  display: grid;
+  grid-template-areas: 'tl tl'
+                       'i1 i2'
+                       '.  i3';
+  /*grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));  Useful when we need to define a autospacing fit of space*/
+  grid-template-rows: auto repeat(2, minmax(var(--max-height-row), auto));
+  background-color: #10D1DE;
+}
+
+.itemsWrap--reverse {
+  grid-template-areas: 'tl tl'
+                       'i1 i2'
+                       'i3  .';
+  
+  grid-auto-flow: column;
+  background-color: #D15C05;
+}
+
+.item {
+  border-top: calc(var(--spacing)/2) solid black;
+  padding-bottom: var(--spacing);
+  overflow: hidden;
+  position: relative;
+}
+
+.itemsWrap:not(.itemWrap--reverse) .item:last-of-type {
+  grid-area: i3;
+}
+
+.item img {
+  max-width: 100%;
+  object-fit: cover;
+  filter: contrast(45%) saturate(190%);
+}
+
+/*.item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-image: linear-gradient(transparent, transparent, transparent, transparent, var(--paper) );
+  opacity: 1;
+}*/
+
+.menu {
+  grid-area: 1 / 32 / 10 / 37;
+  background-color: #CACA05;
+  
+}
+
+.menuLink {
+  color: rgba(var(--colorLink));
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: var(--menuLink);
+  display: block;
+  margin-bottom: 1rem;
+  text-decoration: stroke;
+  font-weight: 800;
+}
+
+.menuLink:hover {
+  letter-spacing: 0.5rem;
+  text-decoration: line-through;
+}
+
+.description-2 {
+  grid-area: 8 / 1 / 11 / 22;
+}
+
+.blockThirteen, .blockFourteen {
+  display: none;
+}
+
+.venues {
+  grid-area: 11 / 7 / 18 / span 16;
+  
+} 
+
+.venues img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.moreSection {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.moreSection div {
+  width: 50%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+.moreSection .emptyBlock {
+  background-color: #cddc39;
+  width: 50%;
+  border-top: calc(var(--spacing)/2) solid black;
+}
+
+.moreSection div h2 {
+  font-size: 3rem;
+  word-break: break-all;
+}
+
+.moreSection img {
+  border-top: calc(var(--spacing)/2) solid black;
+  width: 50%;
+  height: 150px;
+}
+
+.description-3 {
+  grid-area: 17 / 37 / 19 / -22;
+  text-align: right;
+}
+
+@media screen and (min-width: 1200px) {
+  .contacts {
+    grid-area: 3 / 8 / 8 / 15;
+  }
+  
+  .events {
+    grid-area: 3 / 15 / 15 / span 15;
+    grid-area: 3 / 14 / 15 / span 18;
+  }
+}
+
+@media screen and (min-width: 760px) and (max-width: 960px) {
+  :root {
+    --modularGridUnit: 5rem;
+    
+    --min-height-row: calc(2.5 * var(--modularGridUnit));
+    --max-height-row: calc(4.5 * var(--modularGridUnit));
+  }
+  
+  .heading {
+    writing-mode: lr;
+    text-align: left;
+  }
+  
+  .description-1 {
+    grid-area: 1 / 12 / span 2 / span 18;
+  }
+  
+  .events {
+    grid-area: 3 / 12 / 15 / span 18;
+  }
+  
+  .description-2 {
+    grid-area: 8 / 1 / span 4 / span 18;
+  }
+
+  .venues {
+    grid-area: 12 / 1 / 19 / span 20;
+    
+    grid-area: 12 / 20 / 19 / span 18;
+  }
+  
+  .menu {
+    grid-area: 1 / 31 / 10 / grid-column-end;
+
+  }
+  
+  .contacts {
+    grid-area: 7 / 31 / 10 / grid-column-end;
+  }
+  
+  .description-3 {
+    grid-area: 16 / 20 / 19 / -22;
+    grid-area: 12 / 1 / span 4 / span 18;
+    
+  }
+  
+  .blockTwelve {
+    grid-area: 14 / 35 / 16 / 39;
+    visibility: hidden;
+  }
+  
+  .itemWrap {
+    grid-auto-flow: column;
+    grid-template-rows: 1fr repeat(auto-fill, 50%);
+  }
+
+  
+  .itemsWrap--reverse {
+    grid-template-areas: 'tl tl'
+                         '.  i1'
+                         'i2 i3';
+  }
+  
+  .itemsWrap--reverse {
+    text-align: right;
+  }
+  
+  .itemsWrap--reverse .item:first-of-type {
+    grid-area: i1;
+  }
+  
+  .itemsWrap--reverse .item:nth-of-type(2) {
+    grid-area: i2;
+  }
+}
+
+@media screen and (min-width: 380px) and (max-width: 760px) {
+  .boitePageWrapper {
+    margin: 1.5rem;
+  }
+
+  .boitePage {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .heading {
+    writing-mode: lr;
+    text-align: left;
+    padding: 0;
+  }
+  
+  .description-1 {
+    margin-top: 0;
+    padding-bottom: 1rem;
+    border-bottom: 0.5rem solid black;  
+  }
+  
+  [class~="itemsWrap"] {
+    display: grid;
+    grid-template: 1fr / repeat(auto-fit, minmax(50%, 1fr));
+  }
+  
+  .itemsTitle {
+    grid-area: auto;
+  }
+  
+  
+  .itemsWrap:not(.itemWrap--reverse) .item:last-of-type {
+    grid-area: auto;
+  }
+  
+  .itemsWrap .item:last-of-type {
+    grid-area: auto;
+  }
+  
+  .itemsWrap--reverse {
+    grid-auto-flow: initial;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 380px) {
+  
+  .boitePageWrapper {
+    margin: 1.5rem;
+  }
+
+  .boitePage {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  
+  .heading {
+    writing-mode: lr;
+    text-align: left;
+    padding: 0;
+  }
+  
+  .description-1 {
+    margin-top: 0;
+    padding-bottom: 1rem;
+    border-bottom: 0.5rem solid black;  
+  }
+  
+  [class~="itemsWrap"] {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  
+  .item::before {
+    display: none;
+  }
+  
+  .item {
+    width: 100%;
+  }
+  
+}
